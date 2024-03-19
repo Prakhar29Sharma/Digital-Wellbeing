@@ -54,9 +54,9 @@ class _MyAppState extends State<MyApp> {
               var title = events[index].packageName;
               var eventType = events[index].eventType;
               var timeStamp = events[index].timeStamp;
-              print("Title: " + title!);
-              print("Event Type: " + eventType!);
-              print("Time Stamp: " + timeStamp!);
+              // print("Title: " + title!);
+              // print("Event Type: " + eventType!);
+              // print("Time Stamp: " + timeStamp!);
               // print(events[index].timeStamp);
               // if (appData.containsKey(title)) {
               //   appData[title] = appData[title] + 1;

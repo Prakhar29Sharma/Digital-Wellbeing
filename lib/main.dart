@@ -1,134 +1,179 @@
-import 'dart:collection';
-
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:usage_stats/usage_stats.dart';
+import 'package:timezone/data/latest.dart' as tzdata;
+import 'package:timezone/timezone.dart' as tz;
 
-void main() {
+void main() async {
+  tzdata.initializeTimeZones();
   runApp(MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-  List<EventUsageInfo> events = [];
+  List<UsageInfo> appUsageStats = [];
+  int totalScreenTime = 0;
+
+  // Define a list of system app package names
+  List<String> systemApps = [
+    "com.android.launcher",
+    "com.android.settings",
+    "com.android.systemui",
+    "com.android.providers.calendar",
+    "com.android.stk",
+    "com.android.ons",
+    "com.android.se",
+    "com.android.providers.settings",
+    "com.android.providers.downloads",
+    "com.android.providers.telephony",
+    "com.android.providers.contacts",
+    "com.android.providers.blockednumber",
+    "com.android.providers.userdictionary",
+    "com.android.phone",
+    "com.android.providers.media.module",
+    "com.android.providers.downloads.ui",
+    "com.android.carrierconfig",
+    "com.android.inputdevices",
+    "com.android.bluetoothmidiservice",
+    "com.coloros.alarmclock",
+    "com.coloros.calculator",
+    "com.google.android.googlequicksearchbox",
+    "com.google.android.apps.nbu.paisa.user",
+    "com.google.android.dialer",
+    "com.google.android.gm",
+    "com.oplus.safecenter",
+    "com.oplus.wirelesssettings",
+    "com.oppo.quicksearchbox",
+    "com.oplus.screenshot",
+    "android",
+    "com.android.vending",
+    "com.google.android.gms",
+    "com.google.android.permissioncontroller",
+  ];
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) {
       initUsage();
     });
   }
 
   Future<void> initUsage() async {
     UsageStats.grantUsagePermission();
-    DateTime endDate = DateTime.now();
-    DateTime startDate = DateTime.now().toLocal().subtract(Duration(hours: DateTime.now().hour, minutes: DateTime.now().minute, seconds: DateTime.now().second, milliseconds: DateTime.now().millisecond, microseconds: DateTime.now().microsecond));
 
-    List<EventUsageInfo> queryEvents =
-    await UsageStats.queryEvents(startDate, endDate);
+    tz.Location ist = tz.getLocation('Asia/Kolkata');
+    tz.TZDateTime now = tz.TZDateTime.now(ist);
+
+    tz.TZDateTime startDate = tz.TZDateTime(
+      ist,
+      now.year,
+      now.month,
+      now.day,
+      0, // Start from the beginning of the day
+      0,
+      0,
+    );
+
+    DateTime startDateUtc = startDate.toUtc();
+    DateTime endDateUtc = now.toUtc();
+
+    Map<String, UsageInfo> maxUsageMap = {};
+
+    List<UsageInfo> usageStats =
+    await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+
+    for (var usageInfo in usageStats) {
+      String packageName = usageInfo.packageName!;
+      // Exclude system apps from calculation
+      if (!systemApps.contains(packageName)) {
+        if (!maxUsageMap.containsKey(packageName) ||
+            int.parse(usageInfo.totalTimeInForeground ?? '0') >
+                int.parse(maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
+          maxUsageMap[packageName] = usageInfo;
+        }
+      }
+    }
+
+    List<UsageInfo> result = maxUsageMap.values.toList();
+
+    result.sort((a, b) => int.parse(b.totalTimeInForeground ?? '0')
+        .compareTo(int.parse(a.totalTimeInForeground ?? '0')));
+
+    int total = 0;
+    for (var usageInfo in result) {
+      total += int.parse(usageInfo.totalTimeInForeground ?? '0');
+    }
 
     setState(() {
-      events = queryEvents.reversed.toList();
+      appUsageStats = result;
+      totalScreenTime = total;
     });
   }
 
-  HashMap appData = HashMap<String, int>();
-  Map<String, Duration> appUsageDuration = {};
+  String formatTime(int milliseconds) {
+    int seconds = (milliseconds / 1000).truncate();
+    int minutes = (seconds / 60).truncate();
+    int hours = (minutes / 60).truncate();
+
+    String formattedTime = '';
+    if (hours > 0) {
+      formattedTime += '$hours hours ';
+      minutes %= 60; // Correct minutes for hours
+    }
+    if (minutes > 0) {
+      formattedTime += '$minutes minutes ';
+    }
+    formattedTime += '${seconds % 60} seconds';
+
+    return formattedTime;
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Usage Stats"),
+          title: const Text("App Usage Stats"),
         ),
-        body: ListView.separated(
-            itemBuilder: (context, index) {
-              var title = events[index].packageName;
-              var eventType = events[index].eventType;
-              var timeStamp = events[index].timeStamp;
-              // print("Title: " + title!);
-              // print("Event Type: " + eventType!);
-              // print("Time Stamp: " + timeStamp!);
-              // print(events[index].timeStamp);
-              // if (appData.containsKey(title)) {
-              //   appData[title] = appData[title] + 1;
-              // } else {
-              //   appData[title] = 1;
-              // }
-              // Assuming events is a List<EventUsageInfo> containing usage events sorted by timestamp
-
-
-              for (int i = 0; i < events.length - 1; i++) {
-                String currentApp = events[i].packageName!;
-                DateTime currentEventTime =
-                DateTime.fromMillisecondsSinceEpoch(int.parse(events[i].timeStamp!));
-
-                for (int j = i+1; j < events.length; j++) {
-                  if (events[i].packageName == events[j].packageName && (events[i].eventType == '23' && events[j].eventType == '1')) {
-                    String nextApp = events[j].packageName!;
-                    DateTime nextEventTime = DateTime.fromMillisecondsSinceEpoch(int.parse(events[j].timeStamp!));
-                    Duration duration = currentEventTime.difference(nextEventTime);
-                    appUsageDuration.update(currentApp, (value) => value + duration,
-                        ifAbsent: () => duration);
-                    break;
-                  }
-                }
-
-                for (int j = i+1; j < events.length; j++) {
-                  if (events[i].packageName == events[j].packageName && (events[i].eventType == '1' && events[j].eventType == '2')) {
-                    String nextApp = events[j].packageName!;
-                    DateTime nextEventTime = DateTime.fromMillisecondsSinceEpoch(int.parse(events[j].timeStamp!));
-                    Duration duration = currentEventTime.difference(nextEventTime);
-                    appUsageDuration.update(currentApp, (value) => value - duration,
-                        ifAbsent: () => duration);
-                    break;
-                  }
-                }
-
-                // String nextApp = events[i + 1].packageName!;
-                // DateTime nextEventTime =
-                // DateTime.fromMillisecondsSinceEpoch(int.parse(events[i + 1].timeStamp!));
-                //
-                // if (currentApp == nextApp && (events[i].eventType == '1' && events[i + 1].eventType == '2')) {
-                //   Duration duration = nextEventTime.difference(currentEventTime);
-                //   appUsageDuration.update(currentApp, (value) => value + duration,
-                //       ifAbsent: () => duration);
-                // }
-              }
-
-              return ListTile(
-                title: Text(title!),
-                subtitle: Text(
-                    "Last time used: ${DateTime.fromMillisecondsSinceEpoch(int.parse(timeStamp!)).toIso8601String()}"),
-                trailing: Text(eventType!),
-              );
-            },
-            separatorBuilder: (context, index) => const Divider(),
-            itemCount: events.length),
+        body: ListView.builder(
+          itemCount: appUsageStats.length,
+          itemBuilder: (context, index) {
+            var title = appUsageStats[index].packageName;
+            var subtitle = formatTime(
+                int.parse(appUsageStats[index].totalTimeInForeground ?? '0'));
+            return ListTile(
+              title: Text(title ?? ""),
+              subtitle: Text("Total Time Used: $subtitle"),
+            );
+          },
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             initUsage();
-            String formatDuration(Duration duration) {
-              int hours = duration.inHours;
-              int minutes = duration.inMinutes.remainder(60);
-              return '$hours hours and $minutes minutes';
+            for (var usageInfo in appUsageStats) {
+              print(
+                  "${usageInfo.packageName}: ${usageInfo.totalTimeInForeground}");
             }
-            // Print or use appUsageDuration map to display or process app usage durations
-            appUsageDuration.forEach((app, duration) {
-              print('App: $app, Usage Duration: ${formatDuration(duration)}');
-            });
           },
           mini: true,
-          child: const Icon(
-            Icons.refresh,
+          child: const Icon(Icons.refresh),
+        ),
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            height: 50.0,
+            child: Center(
+              child: Text(
+                "Total Screen Time: ${formatTime(totalScreenTime)}",
+                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
         ),
       ),

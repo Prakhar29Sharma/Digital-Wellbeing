@@ -10,7 +10,7 @@ Future<int> DailyTotalUsage() async {
 
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime startDate =
-  tz.TZDateTime(tz.local, now.year, now.month, now.day);
+      tz.TZDateTime(tz.local, now.year, now.month, now.day);
 
   DateTime startDateUtc = startDate.toUtc();
   DateTime endDateUtc = now.toUtc();
@@ -26,7 +26,7 @@ Future<int> DailyTotalUsage() async {
   Map<String, UsageInfo> maxUsageMap = {};
 
   List<UsageInfo> usageStats =
-  await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+      await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
 
   for (var usageInfo in usageStats) {
     String packageName = usageInfo.packageName!;
@@ -34,7 +34,8 @@ Future<int> DailyTotalUsage() async {
     if (!systemApps.contains(packageName)) {
       if (!maxUsageMap.containsKey(packageName) ||
           int.parse(usageInfo.totalTimeInForeground ?? '0') >
-              int.parse(maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
+              int.parse(
+                  maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
         maxUsageMap[packageName] = usageInfo;
       }
     }
@@ -59,10 +60,9 @@ Future<Map<String, double>> DailyAppUsage() async {
   // Initialize time zones
   tzdata.initializeTimeZones();
 
-
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime startDate =
-  tz.TZDateTime(tz.local, now.year, now.month, now.day);
+      tz.TZDateTime(tz.local, now.year, now.month, now.day);
 
   DateTime startDateUtc = startDate.toUtc();
   DateTime endDateUtc = now.toUtc();
@@ -78,7 +78,7 @@ Future<Map<String, double>> DailyAppUsage() async {
   Map<String, UsageInfo> maxUsageMap = {};
 
   List<UsageInfo> usageStats =
-  await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+      await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
 
   for (var usageInfo in usageStats) {
     String packageName = usageInfo.packageName!;
@@ -86,7 +86,8 @@ Future<Map<String, double>> DailyAppUsage() async {
     if (!systemApps.contains(packageName)) {
       if (!maxUsageMap.containsKey(packageName) ||
           int.parse(usageInfo.totalTimeInForeground ?? '0') >
-              int.parse(maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
+              int.parse(
+                  maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
         maxUsageMap[packageName] = usageInfo;
       }
     }
@@ -104,7 +105,7 @@ Future<Map<String, double>> DailyAppUsage() async {
 
   for (var usageInfo in result) {
     appUsageStats[usageInfo.packageName!] =
-    ((int.parse(usageInfo.totalTimeInForeground ?? '0') / total) * 100);
+        ((int.parse(usageInfo.totalTimeInForeground ?? '0') / total) * 100);
   }
 
   return appUsageStats;
@@ -119,7 +120,7 @@ Future<Map<String, int>> ActualDailyAppUsage() async {
 
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
   tz.TZDateTime startDate =
-  tz.TZDateTime(tz.local, now.year, now.month, now.day);
+      tz.TZDateTime(tz.local, now.year, now.month, now.day);
 
   DateTime startDateUtc = startDate.toUtc();
   DateTime endDateUtc = now.toUtc();
@@ -135,7 +136,7 @@ Future<Map<String, int>> ActualDailyAppUsage() async {
   Map<String, UsageInfo> maxUsageMap = {};
 
   List<UsageInfo> usageStats =
-  await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+      await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
 
   for (var usageInfo in usageStats) {
     String packageName = usageInfo.packageName!;
@@ -143,7 +144,8 @@ Future<Map<String, int>> ActualDailyAppUsage() async {
     if (!systemApps.contains(packageName)) {
       if (!maxUsageMap.containsKey(packageName) ||
           int.parse(usageInfo.totalTimeInForeground ?? '0') >
-              int.parse(maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
+              int.parse(
+                  maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
         maxUsageMap[packageName] = usageInfo;
       }
     }
@@ -155,9 +157,9 @@ Future<Map<String, int>> ActualDailyAppUsage() async {
       .compareTo(int.parse(a.totalTimeInForeground ?? '0')));
 
   for (var usageInfo in result) {
-    appUsageStats[usageInfo.packageName!] = int.parse(usageInfo.totalTimeInForeground ?? '0');
+    appUsageStats[usageInfo.packageName!] =
+        int.parse(usageInfo.totalTimeInForeground ?? '0');
   }
 
   return appUsageStats;
 }
-

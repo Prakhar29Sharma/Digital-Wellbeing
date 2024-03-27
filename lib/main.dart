@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       title: 'Digital Wellbeing',
       theme: ThemeData().copyWith(
         colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 224, 247, 250),
+          seedColor: const Color.fromARGB(255, 224, 247, 250),
         ),
       ),
       home: StreamBuilder(

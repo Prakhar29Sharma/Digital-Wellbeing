@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:digital_wellbeing/service/usage_stats/usage_stats.dart';
+import 'package:usage_stats/usage_stats.dart';
 
 class PieChartSample extends StatefulWidget {
-  const PieChartSample({super.key});
+  const PieChartSample({super.key, required usageData});
+
   @override
   _PieChartSampleState createState() => _PieChartSampleState();
 }
@@ -31,14 +33,15 @@ class _PieChartSampleState extends State<PieChartSample> {
       future: DailyAppUsage(), // Call the AppUsage function
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator(); // Display a loading indicator while fetching data
-        } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
+          return const CircularProgressIndicator();
+        } else if (snapshot.data == null || snapshot.data!.isEmpty) {
+          return const Text('Data not available, Try refreshing the page!');
         } else {
           // Retrieve top 5 apps
           Map<String, double> top5Apps = _getTop5Apps(snapshot.data!);
           return PieChart(
-            dataMap: top5Apps, // Use the fetched data
+            dataMap: top5Apps,
+            // Use the fetched data
             animationDuration: const Duration(milliseconds: 1000),
             chartLegendSpacing: 50,
             chartRadius: MediaQuery.of(context).size.width / 1.8,

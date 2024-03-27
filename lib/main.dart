@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       initUsage();
     });
   }
@@ -39,7 +39,8 @@ class _MyAppState extends State<MyApp> {
     UsageStats.grantUsagePermission();
 
     tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-    tz.TZDateTime startDate = tz.TZDateTime(tz.local, now.year, now.month, now.day);
+    tz.TZDateTime startDate =
+        tz.TZDateTime(tz.local, now.year, now.month, now.day);
 
     DateTime startDateUtc = startDate.toUtc();
     DateTime endDateUtc = now.toUtc();
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
     Map<String, UsageInfo> maxUsageMap = {};
 
     List<UsageInfo> usageStats =
-    await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+        await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
 
     for (var usageInfo in usageStats) {
       String packageName = usageInfo.packageName!;
@@ -55,7 +56,8 @@ class _MyAppState extends State<MyApp> {
       if (!systemApps.contains(packageName)) {
         if (!maxUsageMap.containsKey(packageName) ||
             int.parse(usageInfo.totalTimeInForeground ?? '0') >
-                int.parse(maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
+                int.parse(
+                    maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
           maxUsageMap[packageName] = usageInfo;
         }
       }
@@ -120,7 +122,7 @@ class _MyAppState extends State<MyApp> {
             for (var usageInfo in appUsageStats) {
               if (kDebugMode) {
                 print(
-                  "${usageInfo.packageName}: ${usageInfo.totalTimeInForeground}");
+                    "${usageInfo.packageName}: ${usageInfo.totalTimeInForeground}");
               }
             }
           },
@@ -133,7 +135,8 @@ class _MyAppState extends State<MyApp> {
             child: Center(
               child: Text(
                 "Total Screen Time: ${formatTime(totalScreenTime)}",
-                style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
             ),
           ),

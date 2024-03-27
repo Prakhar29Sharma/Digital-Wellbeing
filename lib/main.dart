@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
@@ -6,7 +7,7 @@ import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   tzdata.initializeTimeZones();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
@@ -22,39 +23,8 @@ class _MyAppState extends State<MyApp> {
 
   // Define a list of system app package names
   List<String> systemApps = [
+    // system apps any if we want to exclude
     "com.android.launcher",
-    "com.android.settings",
-    "com.android.systemui",
-    "com.android.providers.calendar",
-    "com.android.stk",
-    "com.android.ons",
-    "com.android.se",
-    "com.android.providers.settings",
-    "com.android.providers.downloads",
-    "com.android.providers.telephony",
-    "com.android.providers.contacts",
-    "com.android.providers.blockednumber",
-    "com.android.providers.userdictionary",
-    "com.android.phone",
-    "com.android.providers.media.module",
-    "com.android.providers.downloads.ui",
-    "com.android.carrierconfig",
-    "com.android.inputdevices",
-    "com.android.bluetoothmidiservice",
-    "com.coloros.alarmclock",
-    "com.coloros.calculator",
-    "com.google.android.googlequicksearchbox",
-    "com.google.android.apps.nbu.paisa.user",
-    "com.google.android.dialer",
-    "com.google.android.gm",
-    "com.oplus.safecenter",
-    "com.oplus.wirelesssettings",
-    "com.oppo.quicksearchbox",
-    "com.oplus.screenshot",
-    "android",
-    "com.android.vending",
-    "com.google.android.gms",
-    "com.google.android.permissioncontroller",
   ];
 
   @override
@@ -68,18 +38,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> initUsage() async {
     UsageStats.grantUsagePermission();
 
-    tz.Location ist = tz.getLocation('Asia/Kolkata');
-    tz.TZDateTime now = tz.TZDateTime.now(ist);
-
-    tz.TZDateTime startDate = tz.TZDateTime(
-      ist,
-      now.year,
-      now.month,
-      now.day,
-      0, // Start from the beginning of the day
-      0,
-      0,
-    );
+    tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime startDate = tz.TZDateTime(tz.local, now.year, now.month, now.day);
 
     DateTime startDateUtc = startDate.toUtc();
     DateTime endDateUtc = now.toUtc();
@@ -158,20 +118,22 @@ class _MyAppState extends State<MyApp> {
           onPressed: () {
             initUsage();
             for (var usageInfo in appUsageStats) {
-              print(
+              if (kDebugMode) {
+                print(
                   "${usageInfo.packageName}: ${usageInfo.totalTimeInForeground}");
+              }
             }
           },
           mini: true,
           child: const Icon(Icons.refresh),
         ),
         bottomNavigationBar: BottomAppBar(
-          child: Container(
+          child: SizedBox(
             height: 50.0,
             child: Center(
               child: Text(
                 "Total Screen Time: ${formatTime(totalScreenTime)}",
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
             ),
           ),

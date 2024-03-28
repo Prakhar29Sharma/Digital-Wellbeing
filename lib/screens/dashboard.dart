@@ -1,4 +1,4 @@
-import 'package:digital_wellbeing/screens/showApps.dart';
+import 'package:digital_wellbeing/screens/show_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../components/pie_chart/pie_chart.dart';

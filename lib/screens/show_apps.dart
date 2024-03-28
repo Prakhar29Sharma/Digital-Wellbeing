@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../service/format_time.dart';
@@ -12,8 +11,17 @@ class ShowAllPageWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        title: Text('All Apps', style: TextStyle(color: Colors.white),),
+        title: const Text('All Apps', style: TextStyle(color: Colors.white),),
       ),
       body: ShowAllAppsPage(appEntries: appEntries),
       bottomNavigationBar: BottomNavigationBar(
@@ -45,27 +53,25 @@ class ShowAllAppsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.blueGrey.withOpacity(0.1),
+        color: Theme.of(context)
+            .colorScheme
+            .primary
+            .withOpacity(0.05),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(
-          color: Colors.black.withOpacity(0.5), // Color of the border
-          width: 1, // Width of the border
-        ),
-
       ),
       child: ListView.separated(
         itemCount: appEntries.length,
         itemBuilder: (context, index) {
           final appEntry = appEntries[index];
           return ListTile(
-            title: Text(appEntry.key, style: (TextStyle(fontSize: 13)),),
-            subtitle: Text(formatTime(appEntry.value), style: (TextStyle(fontSize: 11)),),
-            trailing: Icon(Icons.navigate_next_rounded),
+            title: Text(appEntry.key, style: (const TextStyle(fontSize: 13)),),
+            subtitle: Text(formatTime(appEntry.value), style: (const TextStyle(fontSize: 11)),),
+            trailing: const Icon(Icons.navigate_next_rounded),
           );
         },
-        separatorBuilder: (context, index) => Divider(), // Add a divider between each list tile
+        separatorBuilder: (context, index) => const Divider(), // Add a divider between each list tile
       ),
     );
   }

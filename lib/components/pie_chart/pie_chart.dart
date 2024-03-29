@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:digital_wellbeing/service/usage_stats/usage_stats.dart';
-import 'package:usage_stats/usage_stats.dart';
+import 'package:digital_wellbeing/models/app_info.dart';
 
 class PieChartSample extends StatefulWidget {
   const PieChartSample({super.key, required usageData});
@@ -84,10 +84,10 @@ class _PieChartSampleState extends State<PieChartSample> {
     List<MapEntry<String, double>> sortedEntries = usageData.entries.toList()
       ..sort((a, b) => b.value.compareTo(a.value));
 
-    // Retrieve top 5 apps
+    // Retrieve top 6 apps
     Map<String, double> top5Apps = {};
     for (int i = 0; i < sortedEntries.length && i < 6; i++) {
-      top5Apps[sortedEntries[i].key] = sortedEntries[i].value;
+      top5Apps[appInfoMap[sortedEntries[i].key]?['name'] ?? sortedEntries[i].key] = sortedEntries[i].value;
     }
     return top5Apps;
   }

@@ -1,3 +1,4 @@
+import 'package:digital_wellbeing/models/app_info.dart';
 import 'package:digital_wellbeing/screens/show_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -129,7 +130,7 @@ class _DashboardState extends State<Dashboard> {
                           children: [
                             Center(
                               child: Text(
-                                "Most Used App",
+                                "Most Used Apps",
                                 style: TextStyle(
                                   color: Theme.of(context)
                                       .colorScheme
@@ -139,6 +140,9 @@ class _DashboardState extends State<Dashboard> {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                            ),
+                            const SizedBox(
+                              height: 5,
                             ),
                             // list view of top 10 apps with their usage time
                             FutureBuilder(
@@ -155,10 +159,22 @@ class _DashboardState extends State<Dashboard> {
                                         for (int i = 0;
                                         i < appEntries.length && i < 10;
                                         i++) // Limit to top 10
-                                          ListTile(
-                                            title: Text(appEntries[i].key),
-                                            subtitle: Text(formatTime(
-                                                appEntries[i].value.toInt())),
+                                          Column(
+                                            children: [
+                                              ListTile(
+                                                leading: Image.asset(
+                                                  appInfoMap[appEntries[i].key]?['imagePath'] ?? 'assets/apps/default_app.png',
+                                                  width: 40,
+                                                ),
+                                                title: Text(appInfoMap[appEntries[i].key]?['name'] ?? appEntries[i].key, style: (const TextStyle(fontSize: 13)),),
+                                                subtitle: Text(formatTime(
+                                                    appEntries[i].value.toInt()), style: (const TextStyle(fontSize: 11)),),
+                                              ),
+                                              const Divider(
+                                                indent: 0,
+                                                endIndent: 0,
+                                              ),
+                                            ],
                                           ),
                                         if (appEntries.length >
                                             10) // Show "Show All" option if there are more than 10 apps

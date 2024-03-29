@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:digital_wellbeing/models/app_info.dart';
 import '../service/format_time.dart';
 
 class ShowAllPageWrapper extends StatelessWidget {
@@ -66,7 +66,11 @@ class ShowAllAppsPage extends StatelessWidget {
         itemBuilder: (context, index) {
           final appEntry = appEntries[index];
           return ListTile(
-            title: Text(appEntry.key, style: (const TextStyle(fontSize: 13)),),
+            leading: Image.asset(
+              appInfoMap[appEntry.key]?['imagePath'] ?? 'assets/apps/default_app.png',
+              width: 40,
+            ),
+            title: Text(appInfoMap[appEntry.key]?['name'] ?? appEntry.key, style: (const TextStyle(fontSize: 13)),),
             subtitle: Text(formatTime(appEntry.value), style: (const TextStyle(fontSize: 11)),),
             trailing: const Icon(Icons.navigate_next_rounded),
           );

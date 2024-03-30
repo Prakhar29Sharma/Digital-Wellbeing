@@ -77,7 +77,7 @@ final Map<String, Map<String, String>> appInfoMap = {
   },
   "com.google.android.apps.photos": {
     "name": "Photos",
-    "imagePath": "assets/apps/photos.png",
+    "imagePath": "assets/apps/google_photos.png",
   },
   "com.twitter.android": {
     "name": "Twitter",

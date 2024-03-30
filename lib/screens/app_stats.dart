@@ -1,4 +1,5 @@
 import 'package:digital_wellbeing/models/app_info.dart';
+import 'package:digital_wellbeing/service/format_time.dart';
 import 'package:flutter/material.dart';
 import 'package:digital_wellbeing/service/usage_stats/usage_stats.dart';
 import 'package:digital_wellbeing/components/bar_chart/bar_graph.dart';
@@ -34,30 +35,91 @@ class AppScreenTimePage extends StatelessWidget {
             ),
             const SizedBox(width: 10,),
             Text(appInfoMap[appName]?['name'] ?? appName,
-              style: const TextStyle(color: Colors.white),),
+              style: const TextStyle(color: Colors.white, fontSize: 16),),
           ],
         ),
       ),
-      body: Center(
-        child: FutureBuilder<Map<String, double>>(
-          future: WeeklyAppUsage(appName),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const CircularProgressIndicator();
-            } else if (snapshot.hasError) {
-              return Text('Error: ${snapshot.error}');
-            } else if (snapshot.hasData) {
-              // Display bar chart with weekly app usage data
-              print(snapshot.data!);
-              return SizedBox(
-                height: 400,
-                child: MyBarGraph(
-                    weeklySummary: _prepareWeeklySummary(snapshot.data!)),
-              );
-            } else {
-              return const Text('No data available');
-            }
-          },
+      body: SingleChildScrollView(
+        child: Center(
+          child: Container(
+            margin: const EdgeInsets.all(20),
+            child: Column(
+              children: [
+                const SizedBox(height: 50,),
+                FutureBuilder<Map<String, double>>(
+                  future: WeeklyAppUsage(appName),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (snapshot.hasData) {
+                      // Display bar chart with weekly app usage data
+                      print(snapshot.data!);
+                      return SizedBox(
+                        height: 400,
+                        child: MyBarGraph(
+                            weeklySummary: _prepareWeeklySummary(snapshot.data!)),
+                      );
+                    } else {
+                      return const Text('No data available');
+                    }
+                  },
+                ),
+                const SizedBox(height: 20,),
+                Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context)
+                        .colorScheme
+                        .primary
+                        .withOpacity(0.05),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  padding: const EdgeInsets.only(
+                    top: 15,
+                    bottom: 15,
+                    left: 10,
+                    right: 10,
+                  ),
+                  margin: const EdgeInsets.only(top: 20),
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          "Total Screen Time (Last Week)",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.8),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      FutureBuilder(
+                          future: WeeklyAppUsage(appName),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CircularProgressIndicator();
+                            } else {
+                              return Text(formatTime(snapshot.data!.values.reduce((a, b) => a + b).toInt()),
+                                  style: const TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ));
+                            }
+                          }),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

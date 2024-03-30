@@ -1,4 +1,5 @@
 import 'package:digital_wellbeing/models/app_info.dart';
+import 'package:digital_wellbeing/screens/app_stats.dart';
 import 'package:digital_wellbeing/screens/show_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,7 +15,6 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-
   late Future<int> _dailyTotalUsage;
   late Future<Map<String, double>> _dailyAppUsage;
 
@@ -152,23 +152,53 @@ class _DashboardState extends State<Dashboard> {
                                       ConnectionState.waiting) {
                                     return const CircularProgressIndicator();
                                   } else {
-                                    final List<MapEntry<String, int>> appEntries =
-                                    snapshot.data!.entries.toList();
+                                    final List<MapEntry<String, int>>
+                                        appEntries =
+                                        snapshot.data!.entries.toList();
                                     return Column(
                                       children: [
                                         for (int i = 0;
-                                        i < appEntries.length && i < 10;
-                                        i++) // Limit to top 10
+                                            i < appEntries.length && i < 10;
+                                            i++) // Limit to top 10
                                           Column(
                                             children: [
-                                              ListTile(
-                                                leading: Image.asset(
-                                                  appInfoMap[appEntries[i].key]?['imagePath'] ?? 'assets/apps/default_app.png',
-                                                  width: 40,
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          AppScreenTimePage(
+                                                              appName:
+                                                                  appEntries[i]
+                                                                      .key),
+                                                    ),
+                                                  );
+                                                },
+                                                child: ListTile(
+                                                  leading: Image.asset(
+                                                    appInfoMap[appEntries[i]
+                                                                .key]
+                                                            ?['imagePath'] ??
+                                                        'assets/apps/default_app.png',
+                                                    width: 40,
+                                                  ),
+                                                  title: Text(
+                                                    appInfoMap[appEntries[i]
+                                                            .key]?['name'] ??
+                                                        appEntries[i].key,
+                                                    style: (const TextStyle(
+                                                        fontSize: 13)),
+                                                  ),
+                                                  subtitle: Text(
+                                                    formatTime(
+                                                        appEntries[i].value),
+                                                    style: (const TextStyle(
+                                                        fontSize: 11)),
+                                                  ),
+                                                  trailing: const Icon(Icons
+                                                      .navigate_next_rounded),
                                                 ),
-                                                title: Text(appInfoMap[appEntries[i].key]?['name'] ?? appEntries[i].key, style: (const TextStyle(fontSize: 13)),),
-                                                subtitle: Text(formatTime(
-                                                    appEntries[i].value.toInt()), style: (const TextStyle(fontSize: 11)),),
                                               ),
                                               const Divider(
                                                 indent: 0,
@@ -185,7 +215,8 @@ class _DashboardState extends State<Dashboard> {
                                                 MaterialPageRoute(
                                                   builder: (context) =>
                                                       ShowAllPageWrapper(
-                                                          appEntries: appEntries),
+                                                          appEntries:
+                                                              appEntries),
                                                 ),
                                               );
                                             },
@@ -231,10 +262,6 @@ class _DashboardState extends State<Dashboard> {
             Icons.refresh,
             color: Colors.white,
           ),
-        )
-    );
+        ));
   }
 }
-
-
-

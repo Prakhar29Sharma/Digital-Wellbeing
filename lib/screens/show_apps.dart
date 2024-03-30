@@ -1,3 +1,4 @@
+import 'package:digital_wellbeing/screens/app_stats.dart';
 import 'package:flutter/material.dart';
 import 'package:digital_wellbeing/models/app_info.dart';
 import '../service/format_time.dart';
@@ -65,15 +66,26 @@ class ShowAllAppsPage extends StatelessWidget {
         itemCount: appEntries.length,
         itemBuilder: (context, index) {
           final appEntry = appEntries[index];
-          return ListTile(
-            leading: Image.asset(
-              appInfoMap[appEntry.key]?['imagePath'] ?? 'assets/apps/default_app.png',
-              width: 40,
+          return GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AppScreenTimePage(appName: appEntry.key),
+                ),
+              );
+            },
+            child: ListTile(
+              leading: Image.asset(
+                appInfoMap[appEntry.key]?['imagePath'] ?? 'assets/apps/default_app.png',
+                width: 40,
+              ),
+              title: Text(appInfoMap[appEntry.key]?['name'] ?? appEntry.key, style: (const TextStyle(fontSize: 13)),),
+              subtitle: Text(formatTime(appEntry.value), style: (const TextStyle(fontSize: 11)),),
+              trailing: const Icon(Icons.navigate_next_rounded),
             ),
-            title: Text(appInfoMap[appEntry.key]?['name'] ?? appEntry.key, style: (const TextStyle(fontSize: 13)),),
-            subtitle: Text(formatTime(appEntry.value), style: (const TextStyle(fontSize: 11)),),
-            trailing: const Icon(Icons.navigate_next_rounded),
           );
+
         },
         separatorBuilder: (context, index) => const Divider(), // Add a divider between each list tile
       ),

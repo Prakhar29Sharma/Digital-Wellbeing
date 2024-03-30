@@ -3,7 +3,7 @@ import 'package:digital_wellbeing/screens/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'screens/dashboard.dart';
+import 'screens/home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             );
           }
           if (userSnapshot.hasData) {
-            return const Dashboard();
+            return const MyHomePage();
           }
           return const AuthScreen();
         },

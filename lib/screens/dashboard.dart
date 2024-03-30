@@ -236,23 +236,6 @@ class _DashboardState extends State<Dashboard> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard),
-              label: 'Dashboard',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.analytics),
-              label: 'Analytics',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
-          selectedItemColor: Theme.of(context).colorScheme.primary,
-        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             _refreshData();

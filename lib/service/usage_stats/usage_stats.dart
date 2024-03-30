@@ -163,3 +163,61 @@ Future<Map<String, int>> ActualDailyAppUsage() async {
 
   return appUsageStats;
 }
+
+Future<Map<String, double>> WeeklyAppUsage(String packageName) async {
+  UsageStats.grantUsagePermission();
+
+  // Initialize time zones
+  tzdata.initializeTimeZones();
+
+  tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+  DateTime startDateUtc = now.subtract(Duration(days: 6)).toUtc();
+  DateTime endDateUtc = now.toUtc();
+
+  // Define a list of system app package names
+  List<String> systemApps = [
+    // system apps any if we want to exclude
+    "com.android.launcher",
+  ];
+
+  Map<String, double> appUsageStats = {};
+
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+
+  for (var usageInfo in usageStats) {
+    String currentPackageName = usageInfo.packageName!;
+    // Exclude system apps from calculation
+    if (!systemApps.contains(currentPackageName) && currentPackageName == packageName) {
+      double usageTime = double.parse(usageInfo.totalTimeInForeground ?? '0');
+      int lastTimeUsed = int.parse(usageInfo.lastTimeUsed!); // Parse to int
+      DateTime usageDate = DateTime.fromMillisecondsSinceEpoch(lastTimeUsed);
+      String dayOfWeek = _getDayOfWeek(usageDate.millisecondsSinceEpoch);
+      appUsageStats.update(dayOfWeek, (value) => value + usageTime, ifAbsent: () => usageTime);
+    }
+  }
+
+  return appUsageStats;
+}
+
+
+String _getDayOfWeek(int timestamp) {
+  DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp);
+  switch (date.weekday) {
+    case DateTime.sunday:
+      return 'Sun';
+    case DateTime.monday:
+      return 'Mon';
+    case DateTime.tuesday:
+      return 'Tue';
+    case DateTime.wednesday:
+      return 'Wed';
+    case DateTime.thursday:
+      return 'Thu';
+    case DateTime.friday:
+      return 'Fri';
+    case DateTime.saturday:
+      return 'Sat';
+    default:
+      return '';
+  }
+}

@@ -109,7 +109,7 @@ class AppScreenTimePage extends StatelessWidget {
                             } else {
                               return Text(formatTime(snapshot.data!.values.reduce((a, b) => a + b).toInt()),
                                   style: const TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                   ));
                             }

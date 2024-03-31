@@ -170,8 +170,8 @@ Future<Map<String, double>> CurrentWeekAppUsage(String packageName) async {
   tzdata.initializeTimeZones();
 
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-  DateTime startDateUtc = DateTime.utc(now.year, now.month, now.day);
-  DateTime endDateUtc = now.add(const Duration(days: 7));
+  DateTime startDateUtc = _getStartOfCurrentWeek(now).toUtc();
+  DateTime endDateUtc = startDateUtc.add(const Duration(days: 7)).toUtc();
 
   // Define a list of system app package names
   List<String> systemApps = [
@@ -204,8 +204,8 @@ Future<Map<String, double>> PreviousWeekAppUsage(String packageName) async {
   tzdata.initializeTimeZones();
 
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-  DateTime startDateUtc = now.subtract(const Duration(days: 8)).toUtc();
-  DateTime endDateUtc = now.subtract(const Duration(days: 1)).toUtc();
+  DateTime startDateUtc = _getStartOfPreviousWeek(_getStartOfCurrentWeek(now)).toUtc();
+  DateTime endDateUtc = startDateUtc.add(const Duration(days: 7));
 
   // Define a list of system app package names
   List<String> systemApps = [
@@ -250,10 +250,10 @@ Future<int> CurrentWeekTotalUsage() async {
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
 
   // Get the start of the current week (Sunday)
-  tz.TZDateTime startOfCurrentWeek = _getStartOfWeek(now);
+  tz.TZDateTime startOfCurrentWeek = _getStartOfCurrentWeek(now);
 
   // Get the end of the current week (Saturday)
-  tz.TZDateTime endOfCurrentWeek = _getEndOfWeek(now);
+  tz.TZDateTime endOfCurrentWeek = startOfCurrentWeek.add(const Duration(days: 7));
 
   int totalScreenTime = 0;
 
@@ -302,17 +302,11 @@ Future<int> PreviousWeekTotalUsage() async {
   // Get current date and time in local time zone
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
 
-  // Get the start of the current week (Sunday)
-  tz.TZDateTime startOfCurrentWeek = _getStartOfWeek(now);
-
-  // Get the end of the current week (Saturday)
-  tz.TZDateTime endOfCurrentWeek = _getEndOfWeek(now);
-
   // Get the start of the previous week (Sunday)
-  tz.TZDateTime startOfPreviousWeek = _getStartOfWeek(startOfCurrentWeek.subtract(const Duration(days: 1)));
+  tz.TZDateTime startOfPreviousWeek = _getStartOfPreviousWeek(now);
 
   // Get the end of the previous week (Saturday)
-  tz.TZDateTime endOfPreviousWeek = _getEndOfWeek(startOfCurrentWeek.subtract(const Duration(days: 1)));
+  tz.TZDateTime endOfPreviousWeek = startOfPreviousWeek.add(const Duration(days: 7));
 
   int totalScreenTime = 0;
 
@@ -352,11 +346,29 @@ Future<int> PreviousWeekTotalUsage() async {
 }
 
 // Function to get the start of the week (Sunday)
-tz.TZDateTime _getStartOfWeek(tz.TZDateTime date) {
-  return date.subtract(Duration(days: date.weekday - 1));
+tz.TZDateTime _getStartOfCurrentWeek(tz.TZDateTime date) {
+  print(date.weekday);
+  switch(date.weekday) {
+    case 1:
+      return date.subtract(const Duration(days: 1));
+    case 2:
+      return date.subtract(const Duration(days: 2));
+    case 3:
+      return date.subtract(const Duration(days: 3));
+    case 4:
+      return date.subtract(const Duration(days: 4));
+    case 5:
+      return date.subtract(const Duration(days: 5));
+    case 6:
+      return date.subtract(const Duration(days: 6));
+    case 7:
+      return date.subtract(Duration(days: 0, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
+    default:
+      return date;
+  }
 }
 
-// Function to get the end of the week (Saturday)
-tz.TZDateTime _getEndOfWeek(tz.TZDateTime date) {
-  return _getStartOfWeek(date).add(const Duration(days: 6));
+// Function to get the start of the previous week (Sunday)
+tz.TZDateTime _getStartOfPreviousWeek(tz.TZDateTime date) {
+  return _getStartOfCurrentWeek(date).subtract(const Duration(days: 8));
 }

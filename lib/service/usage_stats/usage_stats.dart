@@ -164,15 +164,15 @@ Future<Map<String, int>> ActualDailyAppUsage() async {
   return appUsageStats;
 }
 
-Future<Map<String, double>> WeeklyAppUsage(String packageName) async {
+Future<Map<String, double>> CurrentWeekAppUsage(String packageName) async {
   UsageStats.grantUsagePermission();
 
   // Initialize time zones
   tzdata.initializeTimeZones();
 
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-  DateTime startDateUtc = now.subtract(Duration(days: 6)).toUtc();
-  DateTime endDateUtc = now.toUtc();
+  DateTime startDateUtc = DateTime.utc(now.year, now.month, now.day);
+  DateTime endDateUtc = now.add(const Duration(days: 7));
 
   // Define a list of system app package names
   List<String> systemApps = [
@@ -191,33 +191,49 @@ Future<Map<String, double>> WeeklyAppUsage(String packageName) async {
       double usageTime = double.parse(usageInfo.totalTimeInForeground ?? '0');
       int lastTimeUsed = int.parse(usageInfo.lastTimeUsed!); // Parse to int
       DateTime usageDate = DateTime.fromMillisecondsSinceEpoch(lastTimeUsed);
-      String dayOfWeek = _getDayOfWeek(usageDate.millisecondsSinceEpoch);
+      String dayOfWeek = _getDayOfWeek(usageDate.weekday);
       appUsageStats.update(dayOfWeek, (value) => value + usageTime, ifAbsent: () => usageTime);
     }
   }
-
   return appUsageStats;
 }
 
+Future<Map<String, double>> PreviousWeekAppUsage(String packageName) async {
+  UsageStats.grantUsagePermission();
 
-String _getDayOfWeek(int timestamp) {
-  DateTime date = DateTime.fromMillisecondsSinceEpoch(timestamp);
-  switch (date.weekday) {
-    case DateTime.sunday:
-      return 'Sun';
-    case DateTime.monday:
-      return 'Mon';
-    case DateTime.tuesday:
-      return 'Tue';
-    case DateTime.wednesday:
-      return 'Wed';
-    case DateTime.thursday:
-      return 'Thu';
-    case DateTime.friday:
-      return 'Fri';
-    case DateTime.saturday:
-      return 'Sat';
-    default:
-      return '';
+  // Initialize time zones
+  tzdata.initializeTimeZones();
+
+  tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+  DateTime startDateUtc = now.subtract(const Duration(days: 8)).toUtc();
+  DateTime endDateUtc = now.subtract(const Duration(days: 1)).toUtc();
+
+  // Define a list of system app package names
+  List<String> systemApps = [
+    // system apps any if we want to exclude
+    "com.android.launcher",
+  ];
+
+  Map<String, double> appUsageStats = {};
+
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+
+  for (var usageInfo in usageStats) {
+    String currentPackageName = usageInfo.packageName!;
+    // Exclude system apps from calculation
+    if (!systemApps.contains(currentPackageName) && currentPackageName == packageName) {
+      double usageTime = double.parse(usageInfo.totalTimeInForeground ?? '0');
+      int lastTimeUsed = int.parse(usageInfo.lastTimeUsed!); // Parse to int
+      DateTime usageDate = DateTime.fromMillisecondsSinceEpoch(lastTimeUsed);
+      String dayOfWeek = _getDayOfWeek(usageDate.weekday);
+      appUsageStats.update(dayOfWeek, (value) => value + usageTime, ifAbsent: () => usageTime);
+    }
   }
+  return appUsageStats;
+}
+
+String _getDayOfWeek(int dayIndex) {
+  // Weekday index starts from 1 (Monday) to 7 (Sunday)
+  List<String> days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  return days[dayIndex - 1];
 }

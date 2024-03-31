@@ -246,9 +246,14 @@ Future<int> CurrentWeekTotalUsage() async {
   // Initialize time zones
   tzdata.initializeTimeZones();
 
+  // Get current date and time in local time zone
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-  DateTime startDateUtc = DateTime.utc(now.year, now.month, now.day);
-  DateTime endDateUtc = now.add(const Duration(days: 7));
+
+  // Get the start of the current week (Sunday)
+  tz.TZDateTime startOfCurrentWeek = _getStartOfWeek(now);
+
+  // Get the end of the current week (Saturday)
+  tz.TZDateTime endOfCurrentWeek = _getEndOfWeek(now);
 
   int totalScreenTime = 0;
 
@@ -260,7 +265,7 @@ Future<int> CurrentWeekTotalUsage() async {
 
   Map<String, UsageInfo> maxUsageMap = {};
 
-  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startOfCurrentWeek.toUtc(), endOfCurrentWeek.toUtc());
 
   for (var usageInfo in usageStats) {
     String packageName = usageInfo.packageName!;
@@ -294,9 +299,20 @@ Future<int> PreviousWeekTotalUsage() async {
   // Initialize time zones
   tzdata.initializeTimeZones();
 
+  // Get current date and time in local time zone
   tz.TZDateTime now = tz.TZDateTime.now(tz.local);
-  DateTime startDateUtc = now.subtract(const Duration(days: 8)).toUtc();
-  DateTime endDateUtc = now.subtract(const Duration(days: 1)).toUtc();
+
+  // Get the start of the current week (Sunday)
+  tz.TZDateTime startOfCurrentWeek = _getStartOfWeek(now);
+
+  // Get the end of the current week (Saturday)
+  tz.TZDateTime endOfCurrentWeek = _getEndOfWeek(now);
+
+  // Get the start of the previous week (Sunday)
+  tz.TZDateTime startOfPreviousWeek = _getStartOfWeek(startOfCurrentWeek.subtract(const Duration(days: 1)));
+
+  // Get the end of the previous week (Saturday)
+  tz.TZDateTime endOfPreviousWeek = _getEndOfWeek(startOfCurrentWeek.subtract(const Duration(days: 1)));
 
   int totalScreenTime = 0;
 
@@ -308,7 +324,7 @@ Future<int> PreviousWeekTotalUsage() async {
 
   Map<String, UsageInfo> maxUsageMap = {};
 
-  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startOfPreviousWeek.toUtc(), endOfPreviousWeek.toUtc());
 
   for (var usageInfo in usageStats) {
     String packageName = usageInfo.packageName!;
@@ -333,4 +349,14 @@ Future<int> PreviousWeekTotalUsage() async {
   }
 
   return totalScreenTime;
+}
+
+// Function to get the start of the week (Sunday)
+tz.TZDateTime _getStartOfWeek(tz.TZDateTime date) {
+  return date.subtract(Duration(days: date.weekday - 1));
+}
+
+// Function to get the end of the week (Saturday)
+tz.TZDateTime _getEndOfWeek(tz.TZDateTime date) {
+  return _getStartOfWeek(date).add(const Duration(days: 6));
 }

@@ -42,25 +42,25 @@ class MyBarGraph extends StatelessWidget {
     String weekDay;
     switch (group.x) {
     case 0:
+      weekDay = 'Sunday';
+      break;
+    case 1:
     weekDay = 'Monday';
     break;
-    case 1:
+    case 2:
     weekDay = 'Tuesday';
     break;
-    case 2:
+    case 3:
     weekDay = 'Wednesday';
     break;
-    case 3:
+    case 4:
     weekDay = 'Thursday';
     break;
-    case 4:
+    case 5:
     weekDay = 'Friday';
     break;
-    case 5:
-    weekDay = 'Saturday';
-    break;
     case 6:
-    weekDay = 'Sunday';
+    weekDay = 'Saturday';
     break;
     default:
     throw Error();

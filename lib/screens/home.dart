@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:digital_wellbeing/screens/dashboard.dart';
+import 'package:digital_wellbeing/screens/analytics.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -45,16 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
       ),
-    );
-  }
-}
-
-class AnalyticsPage extends StatelessWidget {
-  const AnalyticsPage({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Analytics Page'),
     );
   }
 }

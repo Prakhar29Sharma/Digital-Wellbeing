@@ -111,7 +111,6 @@ Future<Map<String, double>> DailyAppUsage() async {
   return appUsageStats;
 }
 
-// package_name : usage_duration in percentage
 Future<Map<String, int>> ActualDailyAppUsage() async {
   UsageStats.grantUsagePermission();
 
@@ -236,4 +235,102 @@ String _getDayOfWeek(int dayIndex) {
   // Weekday index starts from 1 (Monday) to 7 (Sunday)
   List<String> days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   return days[dayIndex - 1];
+}
+
+
+// current week screen time
+
+Future<int> CurrentWeekTotalUsage() async {
+  UsageStats.grantUsagePermission();
+
+  // Initialize time zones
+  tzdata.initializeTimeZones();
+
+  tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+  DateTime startDateUtc = DateTime.utc(now.year, now.month, now.day);
+  DateTime endDateUtc = now.add(const Duration(days: 7));
+
+  int totalScreenTime = 0;
+
+  // Define a list of system app package names
+  List<String> systemApps = [
+    // system apps any if we want to exclude
+    "com.android.launcher",
+  ];
+
+  Map<String, UsageInfo> maxUsageMap = {};
+
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+
+  for (var usageInfo in usageStats) {
+    String packageName = usageInfo.packageName!;
+    // Exclude system apps from calculation
+    if (!systemApps.contains(packageName)) {
+      if (!maxUsageMap.containsKey(packageName) ||
+          int.parse(usageInfo.totalTimeInForeground ?? '0') >
+              int.parse(
+                  maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
+        maxUsageMap[packageName] = usageInfo;
+      }
+    }
+  }
+
+  List<UsageInfo> result = maxUsageMap.values.toList();
+
+  result.sort((a, b) => int.parse(b.totalTimeInForeground ?? '0')
+      .compareTo(int.parse(a.totalTimeInForeground ?? '0')));
+
+  for (var usageInfo in result) {
+    totalScreenTime += int.parse(usageInfo.totalTimeInForeground ?? '0');
+  }
+
+  return totalScreenTime;
+}
+
+// previous week screen time
+Future<int> PreviousWeekTotalUsage() async {
+  UsageStats.grantUsagePermission();
+
+  // Initialize time zones
+  tzdata.initializeTimeZones();
+
+  tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+  DateTime startDateUtc = now.subtract(const Duration(days: 8)).toUtc();
+  DateTime endDateUtc = now.subtract(const Duration(days: 1)).toUtc();
+
+  int totalScreenTime = 0;
+
+  // Define a list of system app package names
+  List<String> systemApps = [
+    // system apps any if we want to exclude
+    "com.android.launcher",
+  ];
+
+  Map<String, UsageInfo> maxUsageMap = {};
+
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startDateUtc, endDateUtc);
+
+  for (var usageInfo in usageStats) {
+    String packageName = usageInfo.packageName!;
+    // Exclude system apps from calculation
+    if (!systemApps.contains(packageName)) {
+      if (!maxUsageMap.containsKey(packageName) ||
+          int.parse(usageInfo.totalTimeInForeground ?? '0') >
+              int.parse(
+                  maxUsageMap[packageName]?.totalTimeInForeground ?? '0')) {
+        maxUsageMap[packageName] = usageInfo;
+      }
+    }
+  }
+
+  List<UsageInfo> result = maxUsageMap.values.toList();
+
+  result.sort((a, b) => int.parse(b.totalTimeInForeground ?? '0')
+      .compareTo(int.parse(a.totalTimeInForeground ?? '0')));
+
+  for (var usageInfo in result) {
+    totalScreenTime += int.parse(usageInfo.totalTimeInForeground ?? '0');
+  }
+
+  return totalScreenTime;
 }

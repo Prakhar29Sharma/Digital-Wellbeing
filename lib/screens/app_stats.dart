@@ -232,7 +232,7 @@ class _AppScreenTimePageState extends State<AppScreenTimePage> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 75,),
+                const SizedBox(height: 50,),
                 FutureBuilder<Map<String, double>>(
                   future: _weeklyData,
                   builder: (context, snapshot) {
@@ -243,8 +243,9 @@ class _AppScreenTimePageState extends State<AppScreenTimePage> {
                     } else if (snapshot.hasData) {
                       // Display bar chart with weekly app usage data
                       print(snapshot.data!);
-                      return SizedBox(
-                        height: 400,
+                      return Container(
+                        height: 220,
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                         child: MyBarGraph(
                             weeklySummary: _prepareWeeklySummary(snapshot.data!)),
                       );

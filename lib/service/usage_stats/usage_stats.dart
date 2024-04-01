@@ -188,7 +188,7 @@ Future<Map<String, double>> CurrentWeekAppUsage(String packageName) async {
     // Exclude system apps from calculation
     if (!systemApps.contains(currentPackageName) && currentPackageName == packageName) {
       double usageTime = double.parse(usageInfo.totalTimeInForeground ?? '0');
-      int lastTimeUsed = int.parse(usageInfo.lastTimeUsed!); // Parse to int
+      int lastTimeUsed = int.parse(usageInfo.firstTimeStamp!); // Parse to int
       DateTime usageDate = DateTime.fromMillisecondsSinceEpoch(lastTimeUsed);
       String dayOfWeek = _getDayOfWeek(usageDate.weekday);
       appUsageStats.update(dayOfWeek, (value) => value + usageTime, ifAbsent: () => usageTime);
@@ -350,17 +350,17 @@ tz.TZDateTime _getStartOfCurrentWeek(tz.TZDateTime date) {
   print(date.weekday);
   switch(date.weekday) {
     case 1:
-      return date.subtract(const Duration(days: 1));
+      return date.subtract(Duration(days: 1, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
     case 2:
-      return date.subtract(const Duration(days: 2));
+      return date.subtract(Duration(days: 2, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
     case 3:
-      return date.subtract(const Duration(days: 3));
+      return date.subtract(Duration(days: 3, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
     case 4:
-      return date.subtract(const Duration(days: 4));
+      return date.subtract(Duration(days: 4, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
     case 5:
-      return date.subtract(const Duration(days: 5));
+      return date.subtract(Duration(days: 5, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
     case 6:
-      return date.subtract(const Duration(days: 6));
+      return date.subtract(Duration(days: 6, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
     case 7:
       return date.subtract(Duration(days: 0, hours: date.hour, minutes: date.minute, seconds: date.second, milliseconds: date.millisecond, microseconds: date.microsecond));
     default:

@@ -83,5 +83,29 @@ final Map<String, Map<String, String>> appInfoMap = {
     "name": "Twitter",
     "imagePath": "assets/apps/twitter.png",
   },
+  "com.jio.media.ondemand" :{
+    "name": "JioCinema",
+    "imagePath": "assets/apps/Jiocinema.png"
+  },
+  "com.cricbuzz.android" :{
+    "name": "Cricbuzz",
+    "imagePath": "assets/apps/cricbuzz.png"
+  },
+  "com.mobond.mindicator" :{
+    "name": "mIndicator",
+    "imagePath": "assets/apps/mindicator.png"
+  },
+  "com.openai.chatgpt" :{
+    "name": "ChatGPT",
+    "imagePath": "assets/apps/chatGPT.png"
+  },
+  "com.cv.docscanner" :{
+    "name": "DocScanner",
+    "imagePath": "assets/apps/docscanner.png"
+  },
+  "com.amazon.avod.thirdpartyclient" :{
+    "name" : "Prime Video",
+    "imagePath" : "assets/apps/primevideo.png"
+  }
   // Add more key-value pairs as needed
 };

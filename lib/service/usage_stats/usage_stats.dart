@@ -237,6 +237,83 @@ String _getDayOfWeek(int dayIndex) {
   return days[dayIndex - 1];
 }
 
+Future<Map<String, double>> CurrentWeekScreenUsage() async {
+  UsageStats.grantUsagePermission();
+
+  // Initialize time zones
+  tzdata.initializeTimeZones();
+
+  // Get current date and time in local time zone
+  tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+
+  // Get the start of the current week (Sunday)
+  tz.TZDateTime startOfCurrentWeek = _getStartOfCurrentWeek(now);
+
+  // Get the end of the current week (Saturday)
+  tz.TZDateTime endOfCurrentWeek = startOfCurrentWeek.add(const Duration(days: 7));
+
+  // Define a list of system app package names
+  List<String> systemApps = [
+    // system apps any if we want to exclude
+    "com.android.launcher",
+  ];
+
+  Map<String, double> appUsageStats = {};
+
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startOfCurrentWeek.toUtc(), endOfCurrentWeek.toUtc());
+
+  for (var usageInfo in usageStats) {
+    String packageName = usageInfo.packageName!;
+    // Exclude system apps from calculation
+    if (!systemApps.contains(packageName)) {
+      double usageTime = double.parse(usageInfo.totalTimeInForeground ?? '0');
+      int lastTimeUsed = int.parse(usageInfo.firstTimeStamp!); // Parse to int
+      DateTime usageDate = DateTime.fromMillisecondsSinceEpoch(lastTimeUsed);
+      String dayOfWeek = _getDayOfWeek(usageDate.weekday);
+      appUsageStats.update(dayOfWeek, (value) => value + usageTime, ifAbsent: () => usageTime);
+    }
+  }
+  return appUsageStats;
+}
+
+Future<Map<String, double>> PreviousWeekScreenUsage() async {
+  UsageStats.grantUsagePermission();
+
+  // Initialize time zones
+  tzdata.initializeTimeZones();
+
+  // Get current date and time in local time zone
+  tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+
+  // Get the start of the previous week (Sunday)
+  tz.TZDateTime startOfPreviousWeek = _getStartOfPreviousWeek(now);
+
+  // Get the end of the previous week (Saturday)
+  tz.TZDateTime endOfPreviousWeek = startOfPreviousWeek.add(const Duration(days: 7));
+
+  // Define a list of system app package names
+  List<String> systemApps = [
+    // system apps any if we want to exclude
+    "com.android.launcher",
+  ];
+
+  Map<String, double> appUsageStats = {};
+
+  List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startOfPreviousWeek.toUtc(), endOfPreviousWeek.toUtc());
+
+  for (var usageInfo in usageStats) {
+    String packageName = usageInfo.packageName!;
+    // Exclude system apps from calculation
+    if (!systemApps.contains(packageName)) {
+      double usageTime = double.parse(usageInfo.totalTimeInForeground ?? '0');
+      int lastTimeUsed = int.parse(usageInfo.lastTimeUsed!); // Parse to int
+      DateTime usageDate = DateTime.fromMillisecondsSinceEpoch(lastTimeUsed);
+      String dayOfWeek = _getDayOfWeek(usageDate.weekday);
+      appUsageStats.update(dayOfWeek, (value) => value + usageTime, ifAbsent: () => usageTime);
+    }
+  }
+  return appUsageStats;
+}
 
 // current week screen time
 

@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/home.dart';
+import 'package:digital_wellbeing/service/event_stats/event_stats.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

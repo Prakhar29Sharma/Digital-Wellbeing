@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (_) => StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
@@ -63,8 +63,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
               color: Colors.white,
 
             ),
-            SizedBox(height: 10),
-            Center(
+            const SizedBox(height: 10),
+            const Center(
               child: SpinKitThreeBounce(
                 color: Colors.white, // Color of the dots
                 size: 40.0, // Size of the dots

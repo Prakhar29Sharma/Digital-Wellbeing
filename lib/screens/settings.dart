@@ -83,8 +83,8 @@ class _SettingsPageState extends State<SettingsPage> {
             children: <Widget>[
               // Account Settings
               ListTile(
-                title: Text('Account Information'),
-                leading: Icon(Icons.account_circle),
+                title: const Text('Account Information'),
+                leading: const Icon(Icons.account_circle),
                 onTap: () {
                   setState(() {
                     _showAccountInfo = !_showAccountInfo;
@@ -94,7 +94,6 @@ class _SettingsPageState extends State<SettingsPage> {
               // Display Account Information if _showAccountInfo is true
               if (_showAccountInfo)
                 Container(
-                  margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Theme.of(context)
                         .colorScheme
@@ -102,44 +101,44 @@ class _SettingsPageState extends State<SettingsPage> {
                         .withOpacity(0.1),
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                  margin: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
                         'Email: ${widget.user?.email ?? "Unknown"}',
-                        style: TextStyle(fontSize: 13),
+                        style: const TextStyle(fontSize: 13),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Text(
                         'Username: ${widget.user?.displayName ?? "Unknown"}',
-                        style: TextStyle(fontSize: 13),
+                        style: const TextStyle(fontSize: 13),
                       ),
                     ],
                   ),
                 ),
               // Help and Support
               ListTile(
-                title: Text('Help and Support'),
-                leading: Icon(Icons.help),
+                title: const Text('Help and Support'),
+                leading: const Icon(Icons.help),
                 onTap: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Help and Support'),
-                        content: SingleChildScrollView(
+                        title: const Text('Help and Support'),
+                        content: const SingleChildScrollView(
                           child: ListBody(
                             children: [
-                              Text('For assistance, please contact us at support@example.com'),
+                              Text('For assistance, please contact us at 321prakhar0039@dbit.in'),
                               SizedBox(height: 10),
-                              Text('You can also visit our FAQ page for answers to common questions.'),
                             ],
                           ),
                         ),
                         actions: <Widget>[
                           TextButton(
-                            child: Text('Close'),
+                            child: const Text('Close'),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -152,12 +151,12 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               // Developer Credentials
               Container(
-                margin: EdgeInsets.all(10),
+                margin: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Container(
-                      padding: EdgeInsets.all(10),
+                      padding: const EdgeInsets.all(25),
                       decoration: BoxDecoration(
                         color: Theme.of(context)
                             .colorScheme
@@ -166,31 +165,46 @@ class _SettingsPageState extends State<SettingsPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Center(
-                            child: Text('Developer Credentials', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color:Theme.of(context)
+                            child: Text('Developer Credits', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color:Theme.of(context)
                                 .colorScheme
                                 .primary
                                 .withOpacity(1.0), )),
                           ),
-                          SizedBox(height: 10),
+                          const SizedBox(height: 5),
+                          const Divider(),
                           for (var developer in developers)
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(developer['name']!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, )),
+                                Text(developer['name']!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color:Theme.of(context).colorScheme.primary.withOpacity(1.0),)),
+                                const SizedBox(
+                                  height: 5,
+                                ),
                                 GestureDetector(
                                   onTap: () {
                                     // Launch the GitHub URL
-                                    launch(developer['github']!);
+                                    launchUrl(developer['github']! as Uri);
                                   },
-                                  child: Text(
-                                    developer['github']!,
-                                    style: TextStyle(fontSize: 12, color: Colors.blue, decoration: TextDecoration.underline),
+                                  child: Row(
+                                    children: [
+                                      Image.asset(
+                                        "assets/apps/github.png", width: 15,
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Text(
+                                        developer['github']!,
+                                        style: const TextStyle(fontSize: 12, color: Colors.blue),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                const SizedBox(height: 20),
                               ],
                             ),
                         ],

@@ -127,7 +127,7 @@ class _AppScreenTimePageState extends State<AppScreenTimePage> {
                       return Text('Error: ${snapshot.error}');
                     } else if (snapshot.hasData) {
                       // Display bar chart with weekly app usage data
-                      print(snapshot.data!);
+                      // print(snapshot.data!);
                       return Container(
                         height: 220,
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -184,9 +184,9 @@ class _AppScreenTimePageState extends State<AppScreenTimePage> {
                               return const CircularProgressIndicator();
                             }
                             else if (snapshot.data!.isEmpty) {
-                              return Text(
+                              return const Text(
                                 'No data available',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 )

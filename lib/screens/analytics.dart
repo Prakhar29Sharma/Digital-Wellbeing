@@ -3,7 +3,6 @@ import 'package:digital_wellbeing/service/format_time.dart';
 import 'package:digital_wellbeing/service/usage_stats/usage_stats.dart';
 import 'package:digital_wellbeing/components/bar_chart/bar_graph.dart';
 import 'package:digital_wellbeing/service/event_stats/event_stats.dart';
-import 'package:flutter/widgets.dart';
 
 class AnalyticsPage extends StatefulWidget {
   const AnalyticsPage({Key? key}) : super(key: key);
@@ -105,7 +104,7 @@ class _AnalyticsPageState extends State<AnalyticsPage> {
                       return Text('Error: ${snapshot.error}');
                     } else if (snapshot.hasData) {
                       // Display bar chart with weekly app usage data
-                      print(snapshot.data!);
+                      // print(snapshot.data!);
                       return Container(
                         height: 220,
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),

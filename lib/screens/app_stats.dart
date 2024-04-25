@@ -1,4 +1,6 @@
 import 'package:digital_wellbeing/models/app_info.dart';
+import 'package:digital_wellbeing/service/event_stats/event_stats.dart';
+import 'package:usage_stats/usage_stats.dart';
 import 'package:digital_wellbeing/service/format_time.dart';
 import 'package:flutter/material.dart';
 import 'package:digital_wellbeing/service/usage_stats/usage_stats.dart';
@@ -17,12 +19,14 @@ class AppScreenTimePage extends StatefulWidget {
 class _AppScreenTimePageState extends State<AppScreenTimePage> {
   late Future<Map<String, double>> _weeklyData;
   late String _activeButton;
+  late Future<List<EventUsageInfo>> _appEventLogs;
 
   @override
   void initState() {
     super.initState();
     _weeklyData = CurrentWeekAppUsage(widget.appName);
     _activeButton = "Current Week";
+    _appEventLogs = getAppEventLogs(widget.appName);
   }
 
   @override

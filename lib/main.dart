@@ -1,9 +1,12 @@
+import 'package:digital_wellbeing/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:digital_wellbeing/screens/auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/home.dart';
+import 'package:digital_wellbeing/service/event_stats/event_stats.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,20 +28,7 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 224, 247, 250),
         ),
       ),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (ctx, userSnapshot) {
-          if (userSnapshot.connectionState == ConnectionState.waiting) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (userSnapshot.hasData) {
-            return const MyHomePage();
-          }
-          return const AuthScreen();
-        },
-      ),
+      home: SplashScreen(),
     );
   }
 }

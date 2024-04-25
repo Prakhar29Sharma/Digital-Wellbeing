@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:usage_stats/usage_stats.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:digital_wellbeing/service/format_time.dart';
 
 const String NOTIFICATION_INTURRUPTION = "12";
 const String DEVICE_UNLOCK = "18";
@@ -98,4 +101,30 @@ Future<int> TodayMobileUnlockCount() async {
   }
   print(unlockCount);
   return unlockCount;
+}
+
+/*
+* Function to get app event logs
+* */
+
+Future<List<EventUsageInfo>> getAppEventLogs(String package_name) async {
+  UsageStats.grantUsagePermission();
+
+  // Initialize time zones
+  tzdata.initializeTimeZones();
+
+  tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+  tz.TZDateTime startDate =
+  tz.TZDateTime(tz.local, now.year, now.month, now.day);
+
+  DateTime startDateUtc = startDate.toUtc();
+  DateTime endDateUtc = now.toUtc();
+
+  List<EventUsageInfo> events = await UsageStats.queryEvents(startDateUtc, endDateUtc);
+
+  // Filter events for the specified package name
+  List<EventUsageInfo> packageEvents =
+  events.where((event) => event.packageName == package_name).toList();
+
+  return packageEvents;
 }

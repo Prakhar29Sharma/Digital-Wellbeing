@@ -57,7 +57,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           children:  [
             // Image.asset to display the PNG image as the logo
             Image.asset(
-              'assets/images/logo2.png', // Replace 'assets/logo.png' with your actual image path
+              'assets/icon/logo2.png', // Replace 'assets/logo.png' with your actual image path
               width: 250,
               height: 250,
               color: Colors.white,

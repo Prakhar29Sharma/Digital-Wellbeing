@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -155,7 +156,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     builder: (BuildContext context) {
                       // Reset password
                       FirebaseAuth.instance.sendPasswordResetEmail(email: user!.email!);
-                      
+
                       return AlertDialog(
                         title: const Text('Reset Password'),
                         content: const Text('Please check your email for password reset instructions.'),
@@ -176,61 +177,65 @@ class _SettingsPageState extends State<SettingsPage> {
               Container(
                 margin: const EdgeInsets.all(10),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(25),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context)
-                            .colorScheme
-                            .primary
-                            .withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Center(
-                            child: Text('Developer Credits', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color:Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(1.0), )),
-                          ),
-                          const SizedBox(height: 5),
-                          const Divider(),
-                          for (var developer in developers)
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(developer['name']!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color:Theme.of(context).colorScheme.primary.withOpacity(1.0),)),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    // Launch the GitHub URL
-                                    launchUrl(developer['github']! as Uri);
-                                  },
-                                  child: Row(
-                                    children: [
-                                      Image.asset(
-                                        "assets/apps/github.png", width: 15,
-                                      ),
-                                      const SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        developer['github']!,
-                                        style: const TextStyle(fontSize: 12, color: Colors.blue),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 20),
-                              ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Container(
+                        padding: const EdgeInsets.all(25),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primary
+                              .withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Text('Developer Credits', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color:Theme.of(context)
+                                  .colorScheme
+                                  .primary
+                                  .withOpacity(1.0), )),
                             ),
-                        ],
+                            const SizedBox(height: 5),
+                            const Divider(),
+                            for (var developer in developers)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(developer['name']!, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color:Theme.of(context).colorScheme.primary.withOpacity(1.0),)),
+                                  const SizedBox(
+                                    height: 5,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      // Launch the GitHub URL
+                                      launchUrl(developer['github']! as Uri);
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Image.asset(
+                                          "assets/apps/github.png", width: 15,
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          developer['github']!,
+                                          style: const TextStyle(fontSize: 12, color: Colors.blue),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                ],
+                              ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

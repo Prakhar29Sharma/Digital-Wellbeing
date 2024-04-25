@@ -14,6 +14,9 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool _showAccountInfo = false;
 
+  // Get the current user
+  User? get user => FirebaseAuth.instance.currentUser;
+
   // Developer information
   final List<Map<String, String>> developers = [
     {
@@ -106,15 +109,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        'Email: ${widget.user?.email ?? "Unknown"}',
-                        style: const TextStyle(fontSize: 13),
-                      ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Username: ${widget.user?.displayName ?? "Unknown"}',
-                        style: const TextStyle(fontSize: 13),
-                      ),
+                      // get the user's email
+                      Text('Email: ${user!.email}', style: TextStyle(color: Theme.of(context).colorScheme.primary.withOpacity(1.0),)),
                     ],
                   ),
                 ),
@@ -136,6 +132,33 @@ class _SettingsPageState extends State<SettingsPage> {
                             ],
                           ),
                         ),
+                        actions: <Widget>[
+                          TextButton(
+                            child: const Text('Close'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+              // Reset Password
+              ListTile(
+                title: const Text('Reset Password'),
+                leading: const Icon(Icons.lock),
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      // Reset password
+                      FirebaseAuth.instance.sendPasswordResetEmail(email: user!.email!);
+                      
+                      return AlertDialog(
+                        title: const Text('Reset Password'),
+                        content: const Text('Please check your email for password reset instructions.'),
                         actions: <Widget>[
                           TextButton(
                             child: const Text('Close'),

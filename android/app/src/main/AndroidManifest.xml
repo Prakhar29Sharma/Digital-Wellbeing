@@ -4,7 +4,7 @@
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
     <application
-        android:label="digital_wellbeing"
+        android:label="Screen Sense"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fe8737c2-b9ef-4f3f-8ac8-93721e901c7c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Digital Wellbeing.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Digital Wellbeing.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/.metadata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/analysis_options.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/debug/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/kotlin/com/example/digital_wellbeing/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/kotlin/com/example/flutter_basics/MainActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/drawable-v21/launch_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/values-night/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/app/src/profile/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/android/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/Lottie/Animation.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/fonts/Truculenta_18pt_Condensed-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/Jiocinema.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/blynk.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/google.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/instagram.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/instagram.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/nextwave.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/profile-avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/smartphone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/snapchat.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/twitter.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/v997-13.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/assets/images/whatsapp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Flutter/Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Flutter/Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/AppDelegate.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/Runner/Runner-Bridging-Header.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/ios/RunnerTests/RunnerTests.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/IntroPage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/app_usage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/graphs/bar_chart_model.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/graphs/bar_graph.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/my_button.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/my_texfield.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/splash_screen.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/lib/ui-helper/util.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/flutter/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/flutter/generated_plugin_registrant.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/flutter/generated_plugin_registrant.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/flutter/generated_plugins.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/main.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/my_application.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/linux/my_application.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Flutter/Flutter-Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Flutter/Flutter-Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/AppDelegate.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_1024.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_128.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_16.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_256.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_32.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Assets.xcassets/AppIcon.appiconset/app_icon_64.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Base.lproj/MainMenu.xib" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Configs/AppInfo.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Configs/Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Configs/Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Configs/Warnings.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/DebugProfile.entitlements" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/MainFlutterWindow.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/Runner/Release.entitlements" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/macos/RunnerTests/RunnerTests.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/pubspec.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/test/widget_test.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/web/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/web/icons/Icon-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/web/icons/Icon-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/web/icons/Icon-maskable-192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/web/icons/Icon-maskable-512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/web/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/web/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/flutter/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/flutter/generated_plugin_registrant.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/flutter/generated_plugins.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/Runner.rc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/flutter_window.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/flutter_window.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/resource.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/resources/app_icon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/runner.exe.manifest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/utils.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/utils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/win32_window.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digital_wellbeing/windows/runner/win32_window.h" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ARYAAN2903&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="20761c1f-2029-4ada-92a1-be00319cc892" />
+        <option name="url" value="https://github.com/ARYAAN2903/Digital-Wellbeing.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2fVtBTu6WEID4cvEuaLFXPenxDM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "25th-April",
+    "io.flutter.reload.alreadyRun": "true",
+    "last_opened_file_path": "C:/Users/aryaa/OneDrive/Desktop/MadLab Exps/Exp7",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aryaa\OneDrive\Desktop\Digital Wellbeing\Digital-Wellbeing-22-april-update\assets\images" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/Digital-Wellbeing-22-april-update/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Flutter.main.dart" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe8737c2-b9ef-4f3f-8ac8-93721e901c7c" name="Changes" comment="" />
+      <created>1713897937959</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1713897937959</updated>
+    </task>
+    <servers />
+  </component>
+</project>

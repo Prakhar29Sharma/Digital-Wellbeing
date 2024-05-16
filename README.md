@@ -1,16 +1,24 @@
-# digital_wellbeing
+# Screen Sense
 
-Sem 6 MAD Mini Project, Digital Wellbeing
+- An android mobile application to track device usage and screen time.
 
-## Getting Started
+- Developed using flutter
 
-This project is a starting point for a Flutter application.
+<br>
 
-A few resources to get you started if this is your first Flutter project:
+## Demo Video
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<video controls src="demo_ss/ScreenSenseDemo2.mp4" width="1080">Screen Sense Demo</video>
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<br>
+
+## App Screenshots
+
+<img src="demo_ss/analytics.jpeg" width="300" />
+<img src="demo_ss/app_dash.jpeg" width="300" />
+<img src="demo_ss/dash_app_lists.jpeg" width="300" />
+<br>
+<img src="demo_ss/dash.jpeg" width="300" />
+<img src="demo_ss/settings.jpeg" width="300" />
+<img src="demo_ss/splash_screen.jpg" width="300" />
+

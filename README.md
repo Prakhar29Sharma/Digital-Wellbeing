@@ -8,7 +8,7 @@
 
 ## Demo Video
 
-<video controls src="demo_ss/ScreenSenseDemo2.mp4" width="1080">Screen Sense Demo</video>
+[![Screen Sense Demo](http://img.youtube.com/vi/CqAyFwentjo/0.jpg)](http://www.youtube.com/watch?v=CqAyFwentjo "Screen Sense Demo")
 
 <br>
 
